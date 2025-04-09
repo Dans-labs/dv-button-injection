@@ -21,9 +21,22 @@
         $('#actionButtonBlock').append($panel);
 
         function displayToken(apiToken) {
+            const data = {
+                url: currentUrl,
+                // the key needs to match the form config target
+                key: "dataverse_api_key",
+                token: apiToken,
+            };
+            
+            // Convert the data object to a JSON string
+            const jsonData = JSON.stringify(data);
+            
+            // Encode the JSON string to Base64 (for URL-safety, we'll use base64url encoding)
+            const encodedData = btoa(jsonData).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
             $wrapper.append(
                 $('<a>', {
-                    href: `https://ohsmart.dansdemo.nl?source=${encodeURIComponent(currentUrl)}&token=${apiToken}`,
+                    href: `http://localhost:5173/deposit/?edit=${encodeURIComponent(encodedData)}`,
                     target: '_blank',
                     class: 'btn btn-info',
                     style: 'width: 100%; display: inline-block; margin-bottom: 0.5em;'
