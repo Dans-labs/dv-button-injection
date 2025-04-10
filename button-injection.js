@@ -44,6 +44,13 @@
             );
 
             $wrapper.append(
+                $('<p>', { style: 'margin-bottom: 0;' }).append(
+                    $('<small>').text('This will take you to our user friendly editing app, where you can enter additional metadata and transform files.')
+                )
+            );
+
+            /**** DISABLED FOR NOW ***
+            $wrapper.append(
                 $('<p>').append(
                     $('<small>').text('Copy your API key below to use in the advanced editing app')
                 )
@@ -85,6 +92,7 @@
                     alert('Failed to copy the API key.');
                 }
             });
+            ***/
         }
 
         $.get('/dataverseuser.xhtml?selectTab=apiTokenTab', function(data) {
